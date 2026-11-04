@@ -1,0 +1,216 @@
+<?php
+include '../config/db.php';
+include '../functions/csrf.php';
+include '../functions/log_activity.php';
+include '../templates/admin_header.php'; // Enforces consistent header with navigation
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Validate CSRF
+    if (!validate_csrf_token($_POST['csrf_token'])) {
+        die('Invalid CSRF token');
+    }
+    
+    // Sanitize and insert data (adapt to DB structure; assume nurses table)
+    $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+    // ... (add all fields similarly)
+    
+    $query = "INSERT INTO nurses (full_name, ...) VALUES ('$full_name', ...)";
+    if (mysqli_query($conn, $query)) {
+        log_activity($_SESSION['user_id'], 'Added new nurse registration');
+        echo '<script>alert("Registration submitted successfully!");</script>';
+    } else {
+        echo '<script>alert("Error: " + mysqli_error($conn));</script>';
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EduSync Nurse Registration</title>
+    <style>
+        /* Futuristic Styles based on white-logo.png palette */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #00C6FF, #0072FF);
+            --white: #FFFFFF;
+            --gray: #F0F4F8;
+            --shadow-neu: 5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+        }
+        
+        body { background: var(--primary-gradient); color: var(--white); font-family: 'Roboto', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        /* Cinematic Loader */
+        .loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; align-items: center; justify-content: center; z-index: 9999; animation: fadeOut 2s forwards 3s; }
+        .loader img { width: 200px; animation: pulse 2s infinite, rotateLogo 3s ease-in-out; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        @keyframes rotateLogo { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+        
+        /* Form Container with Glassmorphism */
+        .form-container { max-width: 800px; margin: 50px auto; padding: 40px; background: var(--glass-bg); backdrop-filter: blur(10px); border-radius: 20px; box-shadow: var(--shadow-neu); animation: fadeInUp 1s ease-out; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Steps with Parallax */
+        .step { display: none; opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; }
+        .step.active { display: block; opacity: 1; transform: translateX(0); }
+        .step.slide-left { transform: translateX(-100%); }
+        .step.slide-right { transform: translateX(100%); }
+        
+        /* Neumorphic Inputs & Buttons */
+        input, select { width: 100%; padding: 15px; margin: 10px 0; border: none; border-radius: 10px; background: var(--gray); box-shadow: inset var(--shadow-neu); transition: box-shadow 0.3s; }
+        input:focus { box-shadow: var(--shadow-neu); }
+        button { padding: 15px 30px; border: none; border-radius: 10px; background: var(--primary-gradient); color: var(--white); cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; box-shadow: var(--shadow-neu); }
+        button:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 198, 255, 0.5); }
+        
+        /* Progress Bar with Animation */
+        .progress-bar { height: 5px; background: var(--gray); margin-bottom: 20px; position: relative; }
+        .progress { height: 100%; background: var(--primary-gradient); width: 0; transition: width 0.5s; animation: progressAnim 0.5s forwards; }
+        @keyframes progressAnim { to { width: var(--progress-width); } }
+        
+        /* Tooltips */
+        .tooltip { position: relative; display: inline-block; }
+        .tooltip .tooltiptext { visibility: hidden; width: 200px; background: var(--glass-bg); color: var(--white); text-align: center; border-radius: 6px; padding: 5px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -100px; opacity: 0; transition: opacity 0.3s; backdrop-filter: blur(5px); }
+        .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
+    </style>
+</head>
+<body>
+    <div class="loader"><img src="../assets/images/white-logo.png" alt="NERDSPRING EduSync Loader"></div>
+    
+    <div class="form-container">
+        <h1 style="text-align: center; animation: fadeIn 1s;">Nurses & Midwives Registration Form</h1>
+        
+        <div class="progress-bar"><div class="progress" style="--progress-width: 14%;"></div></div> <!-- Updates dynamically -->
+        
+        <form method="POST" id="multiStepForm">
+            <?php echo generate_csrf_token(); ?>
+            
+            <!-- Step 1: Personal Information -->
+            <div class="step active" id="step1">
+                <h2>Form 1: Personal Information</h2>
+                <label>Full Name: <input type="text" name="full_name" required></label>
+                <label>Date of Birth: <input type="date" name="dob" required></label>
+                <label>Gender: <select name="gender"><option>Male</option><option>Female</option><option>Other</option></select></label>
+                <label>Marital Status: <input type="text" name="marital_status"></label>
+                <label>Nationality: <input type="text" name="nationality"></label>
+                <label>Residential Address: <input type="text" name="address"></label>
+                <label>Phone Number: <input type="tel" name="phone"></label>
+                <label>Email Address: <input type="email" name="email"></label>
+                <label>Emergency Contact Name: <input type="text" name="emergency_name"></label>
+                <label>Emergency Contact Phone: <input type="tel" name="emergency_phone"></label>
+                <button type="button" onclick="nextStep(2)">Next</button>
+            </div>
+            
+            <!-- Step 2: Educational Qualifications -->
+            <div class="step" id="step2">
+                <h2>Form 2: Educational Qualifications</h2>
+                <label>Name of Nursing/Midwifery School: <input type="text" name="school_name"></label>
+                <label>Certificate/Diploma/Degree Obtained: <input type="text" name="qualification"></label>
+                <label>Year of Graduation: <input type="number" name="grad_year"></label>
+                <label>Professional Registration Number: <input type="text" name="reg_number"></label>
+                <label>Licensing Authority: <input type="text" name="licensing_auth"></label>
+                <button type="button" onclick="prevStep(1)">Previous</button>
+                <button type="button" onclick="nextStep(3)">Next</button>
+            </div>
+            
+            <!-- Step 3: Professional Experience -->
+            <div class="step" id="step3">
+                <h2>Form 3: Professional Experience</h2>
+                <label>Name of Hospital/Clinic: <input type="text" name="hospital_name"></label>
+                <label>Department/Unit: <input type="text" name="department"></label>
+                <label>Position Held: <input type="text" name="position"></label>
+                <label>Years of Experience: <input type="number" name="years_exp"></label>
+                <label>Reason for Leaving: <input type="text" name="reason_leaving"></label>
+                <button type="button" onclick="prevStep(2)">Previous</button>
+                <button type="button" onclick="nextStep(4)">Next</button>
+            </div>
+            
+            <!-- Step 4: Professional License & Registration -->
+            <div class="step" id="step4">
+                <h2>Form 4: Professional License & Registration</h2>
+                <label>Nursing/Midwifery Council Registration Number: <input type="text" name="council_reg"></label>
+                <label>Year of Registration: <input type="number" name="reg_year"></label>
+                <label>License Valid Until: <input type="date" name="license_valid"></label>
+                <label>Area of Specialty: <input type="text" name="specialty"></label>
+                <button type="button" onclick="prevStep(3)">Previous</button>
+                <button type="button" onclick="nextStep(5)">Next</button>
+            </div>
+            
+            <!-- Step 5: Medical Fitness Declaration -->
+            <div class="step" id="step5">
+                <h2>Form 5: Medical Fitness Declaration</h2>
+                <label>General Health Status: <input type="text" name="health_status"></label>
+                <label>History of Communicable Diseases (Yes/No): <select name="communicable"><option>Yes</option><option>No</option></select></label>
+                <label class="tooltip">Immunization Status (Hepatitis B, etc.): <input type="text" name="immunization"><span class="tooltiptext">List vaccinations, e.g., Hepatitis B, TB.</span></label>
+                <label>Any Physical or Mental Condition Affecting Work: <input type="text" name="condition"></label>
+                <button type="button" onclick="prevStep(4)">Previous</button>
+                <button type="button" onclick="nextStep(6)">Next</button>
+            </div>
+            
+            <!-- Step 6: Referee / Guarantor Information -->
+            <div class="step" id="step6">
+                <h2>Form 6: Referee / Guarantor Information</h2>
+                <label>Referee Name: <input type="text" name="referee_name"></label>
+                <label>Relationship to Applicant: <input type="text" name="relationship"></label>
+                <label>Organization: <input type="text" name="organization"></label>
+                <label>Phone Number: <input type="tel" name="referee_phone"></label>
+                <label>Email Address: <input type="email" name="referee_email"></label>
+                <button type="button" onclick="prevStep(5)">Previous</button>
+                <button type="button" onclick="nextStep(7)">Next</button>
+            </div>
+            
+            <!-- Step 7: Declaration & Undertaking -->
+            <div class="step" id="step7">
+                <h2>Form 7: Declaration & Undertaking</h2>
+                <p>I hereby declare that the information provided above is true and correct. I agree to abide by the rules, regulations, and ethical standards of the institution.</p>
+                <label>Applicant Name: <input type="text" name="applicant_name" required></label>
+                <label>Signature: <input type="text" name="signature" placeholder="Type your name as signature"></label> <!-- Could integrate canvas for digital sig -->
+                <label>Date: <input type="date" name="date" required></label>
+                <button type="button" onclick="prevStep(6)">Previous</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const progress = document.querySelector('.progress');
+        
+        function updateProgress() {
+            const width = ((currentStep - 1) / 6) * 100 + '%';
+            progress.style.setProperty('--progress-width', width);
+            progress.style.animation = 'none';
+            setTimeout(() => progress.style.animation = 'progressAnim 0.5s forwards', 10);
+        }
+        
+        function nextStep(step) {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${currentStep}`).classList.add('slide-left');
+            currentStep = step;
+            document.getElementById(`step${currentStep}`).classList.add('active', 'slide-right');
+            updateProgress();
+        }
+        
+        function prevStep(step) {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${currentStep}`).classList.add('slide-right');
+            currentStep = step;
+            document.getElementById(`step${currentStep}`).classList.add('active', 'slide-left');
+            updateProgress();
+        }
+        
+        // Staggered Reveal for Form Elements
+        document.querySelectorAll('.step label').forEach((el, idx) => {
+            el.style.animation = `fadeInUp 0.5s ease-out ${idx * 0.1}s forwards`;
+            el.style.opacity = 0;
+        });
+        
+        // Hide loader after load
+        window.addEventListener('load', () => document.querySelector('.loader').style.display = 'none');
+    </script>
+    
+<?php include '../templates/admin_footer.php'; ?>
+</body>
+</html>

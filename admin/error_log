@@ -1,0 +1,87 @@
+[04-Jul-2026 02:40:53 UTC] Database connection failed: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+[04-Jul-2026 02:40:57 UTC] Database connection failed: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+[04-Jul-2026 02:40:58 UTC] Database connection failed: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+[04-Jul-2026 02:40:59 UTC] Database connection failed: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+[04-Jul-2026 02:41:00 UTC] Database connection failed: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+[04-Jul-2026 02:41:00 UTC] Database connection failed: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+[04-Jul-2026 02:42:17 UTC] Database connection failed: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO)
+[04-Jul-2026 02:47:07 UTC] Database connection failed: SQLSTATE[HY000] [1045] Access denied for user 'believet'@'localhost' (using password: YES)
+[04-Jul-2026 02:47:11 UTC] Database connection failed: SQLSTATE[HY000] [1045] Access denied for user 'believet'@'localhost' (using password: YES)
+[04-Jul-2026 16:59:12 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'currency' in 'SET' in /home/believet/public_html/admin/offers.php:44
+Stack trace:
+#0 /home/believet/public_html/admin/offers.php(44): PDOStatement->execute()
+#1 {main}
+  thrown in /home/believet/public_html/admin/offers.php on line 44
+[04-Jul-2026 16:59:32 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'currency' in 'SET' in /home/believet/public_html/admin/offers.php:44
+Stack trace:
+#0 /home/believet/public_html/admin/offers.php(44): PDOStatement->execute()
+#1 {main}
+  thrown in /home/believet/public_html/admin/offers.php on line 44
+[04-Jul-2026 17:03:22 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'currency' in 'SET' in /home/believet/public_html/admin/offers.php:44
+Stack trace:
+#0 /home/believet/public_html/admin/offers.php(44): PDOStatement->execute()
+#1 {main}
+  thrown in /home/believet/public_html/admin/offers.php on line 44
+[04-Jul-2026 17:05:08 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'currency' in 'SET' in /home/believet/public_html/admin/offers.php:44
+Stack trace:
+#0 /home/believet/public_html/admin/offers.php(44): PDOStatement->execute()
+#1 {main}
+  thrown in /home/believet/public_html/admin/offers.php on line 44
+[04-Jul-2026 20:00:47 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'currency' in 'SET' in /home/believet/public_html/admin/offers.php:44
+Stack trace:
+#0 /home/believet/public_html/admin/offers.php(44): PDOStatement->execute()
+#1 {main}
+  thrown in /home/believet/public_html/admin/offers.php on line 44
+[05-Jul-2026 00:41:22 UTC] PHP Warning:  include(admin_header.php): Failed to open stream: No such file or directory in /home/believet/public_html/admin/dashboard.php on line 31
+[05-Jul-2026 00:41:22 UTC] PHP Warning:  include(): Failed opening 'admin_header.php' for inclusion (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/believet/public_html/admin/dashboard.php on line 31
+[05-Jul-2026 00:41:22 UTC] PHP Warning:  include(admin_footer.php): Failed to open stream: No such file or directory in /home/believet/public_html/admin/dashboard.php on line 211
+[05-Jul-2026 00:41:22 UTC] PHP Warning:  include(): Failed opening 'admin_footer.php' for inclusion (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/believet/public_html/admin/dashboard.php on line 211
+[05-Jul-2026 02:31:59 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'currency' in 'INSERT INTO' in /home/believet/public_html/admin/offers.php:179
+Stack trace:
+#0 /home/believet/public_html/admin/offers.php(179): PDOStatement->execute()
+#1 {main}
+  thrown in /home/believet/public_html/admin/offers.php on line 179
+[05-Jul-2026 02:46:52 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'currency' in 'SET' in /home/believet/public_html/admin/offers.php:152
+Stack trace:
+#0 /home/believet/public_html/admin/offers.php(152): PDOStatement->execute()
+#1 {main}
+  thrown in /home/believet/public_html/admin/offers.php on line 152
+[05-Jul-2026 03:33:59 UTC] PHP Warning:  require_once(includes/db.php): Failed to open stream: No such file or directory in /home/believet/public_html/admin/blog.php on line 2
+[05-Jul-2026 03:33:59 UTC] PHP Fatal error:  Uncaught Error: Failed opening required 'includes/db.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/believet/public_html/admin/blog.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/believet/public_html/admin/blog.php on line 2
+[05-Jul-2026 04:21:37 UTC] PHP Warning:  Undefined variable $loop in /home/believet/public_html/admin/gallery.php on line 284
+[05-Jul-2026 04:21:37 UTC] PHP Warning:  Attempt to read property "index" on null in /home/believet/public_html/admin/gallery.php on line 284
+[09-Jul-2026 21:17:25 UTC] PHP Warning:  Undefined variable $loop in /home/believet/public_html/admin/gallery.php on line 284
+[09-Jul-2026 21:17:25 UTC] PHP Warning:  Attempt to read property "index" on null in /home/believet/public_html/admin/gallery.php on line 284
+[09-Jul-2026 21:33:08 UTC] PHP Warning:  Undefined variable $loop in /home/believet/public_html/admin/gallery.php on line 284
+[09-Jul-2026 21:33:08 UTC] PHP Warning:  Attempt to read property "index" on null in /home/believet/public_html/admin/gallery.php on line 284
+[19-Jul-2026 16:48:36 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'duration' at row 1 in /home/believet/public_html/admin/offers.php:147
+Stack trace:
+#0 /home/believet/public_html/admin/offers.php(147): PDOStatement->execute()
+#1 {main}
+  thrown in /home/believet/public_html/admin/offers.php on line 147
+[23-Jul-2026 18:45:51 UTC] PHP Warning:  Undefined variable $loop in /home/believet/public_html/admin/gallery.php on line 284
+[23-Jul-2026 18:45:51 UTC] PHP Warning:  Attempt to read property "index" on null in /home/believet/public_html/admin/gallery.php on line 284
+[29-Jul-2026 02:36:39 UTC] PHP Warning:  Undefined variable $loop in /home/believet/public_html/admin/gallery.php on line 284
+[29-Jul-2026 02:36:39 UTC] PHP Warning:  Attempt to read property "index" on null in /home/believet/public_html/admin/gallery.php on line 284
+[17-Aug-2026 01:48:37 UTC] PHP Fatal error:  Uncaught TypeError: render_paper_form(): Argument #3 ($pdo) must be of type PDO, string given, called in /home/believet/public_html/admin/services.php on line 1437 and defined in /home/believet/public_html/admin/services.php:1228
+Stack trace:
+#0 /home/believet/public_html/admin/services.php(1437): render_paper_form()
+#1 {main}
+  thrown in /home/believet/public_html/admin/services.php on line 1228
+[12-Oct-2026 19:33:30 UTC] PHP Warning:  Undefined variable $loop in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:33:30 UTC] PHP Warning:  Attempt to read property "index" on null in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:33:46 UTC] PHP Warning:  Undefined variable $loop in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:33:46 UTC] PHP Warning:  Attempt to read property "index" on null in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:34:49 UTC] PHP Warning:  Undefined variable $loop in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:34:49 UTC] PHP Warning:  Attempt to read property "index" on null in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:34:59 UTC] PHP Warning:  Undefined variable $loop in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:34:59 UTC] PHP Warning:  Attempt to read property "index" on null in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:35:43 UTC] PHP Warning:  Undefined variable $loop in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:35:43 UTC] PHP Warning:  Attempt to read property "index" on null in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:35:52 UTC] PHP Warning:  Undefined variable $loop in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:35:52 UTC] PHP Warning:  Attempt to read property "index" on null in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:45:54 UTC] PHP Warning:  Undefined variable $loop in /home/believet/public_html/admin/gallery.php on line 284
+[12-Oct-2026 19:45:54 UTC] PHP Warning:  Attempt to read property "index" on null in /home/believet/public_html/admin/gallery.php on line 284

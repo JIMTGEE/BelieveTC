@@ -1,0 +1,52 @@
+/* Premium Travel Agency Styles - Colors: #033754 (primary), #ffffff (bg/text), #10b6d7 (secondary), #89d900 (accent) */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+@import url('https://unpkg.com/aos@2.3.1/dist/aos.css'); /* For animations */
+
+body { font-family: 'Poppins', sans-serif; color: #033754; background: #ffffff; }
+a { color: #10b6d7; transition: color 0.3s; }
+a:hover { color: #89d900; }
+
+.navbar { background: #033754 !important; }
+.navbar-brand img { height: 50px; }
+.nav-link { color: #ffffff !important; font-weight: 600; }
+.nav-link:hover { color: #10b6d7 !important; }
+
+.hero { position: relative; height: 80vh; background: url('../images/hero_dubai.jpg') center/cover no-repeat; }
+.hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 55, 84, 0.5); } /* Overlay for readability */
+.hero-content { position: relative; z-index: 1; color: #ffffff; }
+
+.section-title { color: #033754; font-weight: 700; border-bottom: 3px solid #89d900; display: inline-block; padding-bottom: 10px; }
+.card { border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+.card:hover { transform: translateY(-10px); border: 1px solid #10b6d7; }
+.btn-primary { background: #10b6d7; border: none; }
+.btn-primary:hover { background: #89d900; }
+
+.footer { background: #033754; color: #ffffff; }
+.footer a { color: #10b6d7; }
+.footer a:hover { color: #89d900; }
+.partners_grid .partner_box { background: #ffffff; color: #033754; border: 1px solid #10b6d7; }
+
+@media (max-width: 768px) { .hero { height: 60vh; } }
+
+/* Animations */
+[data-aos] { opacity: 0; transition: opacity 0.5s; }
+[data-aos].aos-animate { opacity: 1; }
+
+/* Parallax */
+.parallax { background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; }
+
+body {
+    padding-top: 90px;           /* Desktop navbar height */
+}
+
+@media (max-width: 991.98px) {
+    body {
+        padding-top: 70px;       /* Mobile navbar height */
+    }
+}
+
+html {
+    scroll-padding-top: 100px;
+}
