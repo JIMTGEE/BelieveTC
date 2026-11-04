@@ -1,12 +1,14 @@
 <?php
 // config.php
+
 define('SITE_TITLE', 'Believe Travel Consult');
 define('SITE_EMAIL', 'btravelconsult@gmail.com');
 define('SITE_PHONE', '+233596204991 / +971551465790');
 define('SITE_ADDRESS', 'Tema Golf City - Ghana');
-define('BASE_URL', 'http://beleivetravelconsult.com/');  // Update to your domain
 
-// DB credentials (update these!)
+define('BASE_URL', 'http://beleivetravelconsult.com/');
+
+// DB credentials
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
